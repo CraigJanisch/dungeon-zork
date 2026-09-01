@@ -19,7 +19,9 @@ function showToast(message) {
 function getGameInput() {
   const doc = frame.contentDocument;
   if (!doc) return null;
-  return doc.querySelector('input.Input:not([disabled]), input[type="text"]:not([disabled])');
+  return doc.querySelector(
+    'textarea.Input:not([disabled]), input.Input:not([disabled]), input[type="text"]:not([disabled])'
+  );
 }
 
 function submitCommand(command) {
@@ -38,15 +40,26 @@ function submitCommand(command) {
     return;
   }
 
-  const event = new KeyboardEvent('keydown', {
-    key: 'Enter',
-    code: 'Enter',
-    keyCode: 13,
-    which: 13,
-    bubbles: true,
-    cancelable: true,
-  });
-  input.dispatchEvent(event);
+  const gameWindow = frame.contentWindow;
+  const gameJQuery = gameWindow?.jQuery;
+
+  if (gameJQuery) {
+    gameJQuery(input).trigger(gameJQuery.Event('keypress', {
+      key: 'Enter',
+      code: 'Enter',
+      keyCode: 13,
+      which: 13,
+    }));
+  } else {
+    input.dispatchEvent(new KeyboardEvent('keypress', {
+      key: 'Enter',
+      code: 'Enter',
+      keyCode: 13,
+      which: 13,
+      bubbles: true,
+      cancelable: true,
+    }));
+  }
 }
 
 function applyTheme(theme) {

@@ -1,4 +1,4 @@
-const CACHE = 'dungeon-v1';
+const CACHE = 'dungeon-v6';
 const ASSETS = ['/', '/index.html', '/styles.css', '/app.js', '/game.html', '/manifest.webmanifest', '/icon.svg'];
 
 self.addEventListener('install', (event) => {
