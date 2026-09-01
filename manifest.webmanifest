@@ -1,0 +1,17 @@
+{
+  "name": "Dungeon — Interactive Fiction",
+  "short_name": "Dungeon",
+  "description": "A mobile-friendly browser edition of the classic Zork I interactive fiction game.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#020503",
+  "theme_color": "#050906",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

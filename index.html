@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#050906" />
+    <meta name="description" content="A mobile-friendly browser edition of the classic Zork I interactive fiction game." />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/styles.css" />
+    <title>Dungeon — Interactive Fiction</title>
+  </head>
+  <body data-theme="green">
+    <main class="app-shell">
+      <header class="topbar">
+        <div class="brand" aria-label="Dungeon">
+          <span class="prompt-mark" aria-hidden="true">&gt;</span>
+          <span>DUNGEON</span>
+          <span class="cursor" aria-hidden="true"></span>
+        </div>
+        <div class="top-actions">
+          <button class="icon-button" id="themeButton" type="button" aria-label="Change terminal color" title="Change terminal color">◐</button>
+          <button class="icon-button" id="helpButton" type="button" aria-label="Show command help" title="Command help">?</button>
+        </div>
+      </header>
+
+      <section class="terminal-frame" aria-label="Dungeon game terminal">
+        <div class="screen-glass" aria-hidden="true"></div>
+        <iframe id="gameFrame" title="Dungeon game" src="/game.html" allow="clipboard-write"></iframe>
+      </section>
+
+      <nav class="command-deck" aria-label="Quick game commands">
+        <div class="quick-row" aria-label="Common commands">
+          <button type="button" data-command="LOOK">LOOK</button>
+          <button type="button" data-command="INVENTORY">INVENTORY</button>
+          <button type="button" data-command="TAKE ">TAKE…</button>
+          <button type="button" data-command="OPEN ">OPEN…</button>
+        </div>
+
+        <div class="movement-row">
+          <div class="compass" aria-label="Movement controls">
+            <button type="button" data-command="NORTH" aria-label="Go north">N</button>
+            <button type="button" data-command="WEST" aria-label="Go west">W</button>
+            <button class="look-button" type="button" data-command="LOOK" aria-label="Look around">◎</button>
+            <button type="button" data-command="EAST" aria-label="Go east">E</button>
+            <button type="button" data-command="SOUTH" aria-label="Go south">S</button>
+          </div>
+          <div class="utility-grid">
+            <button type="button" data-command="UP">UP</button>
+            <button type="button" data-command="DOWN">DOWN</button>
+            <button type="button" data-command="SAVE">SAVE</button>
+            <button type="button" data-command="RESTORE">RESTORE</button>
+          </div>
+        </div>
+      </nav>
+    </main>
+
+    <dialog id="helpDialog">
+      <div class="dialog-heading">
+        <h1>Command help</h1>
+        <button class="icon-button" id="closeHelp" type="button" aria-label="Close help">×</button>
+      </div>
+      <p>Type commands naturally at the flashing prompt inside the terminal.</p>
+      <dl>
+        <div><dt>Move</dt><dd>NORTH, SOUTH, EAST, WEST, UP, DOWN</dd></div>
+        <div><dt>Explore</dt><dd>LOOK, EXAMINE, READ, OPEN</dd></div>
+        <div><dt>Objects</dt><dd>TAKE, DROP, PUT, GIVE</dd></div>
+        <div><dt>Status</dt><dd>INVENTORY, SCORE, DIAGNOSE</dd></div>
+        <div><dt>Progress</dt><dd>SAVE, RESTORE, RESTART</dd></div>
+      </dl>
+      <p class="tip">Tip: Press the ↑ and ↓ keys to revisit previous commands.</p>
+    </dialog>
+
+    <div id="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>
